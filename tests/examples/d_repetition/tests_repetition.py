@@ -6,4 +6,3 @@ class Test_Config(unittest.TestCase):
 
     def test_configuration(self):
         self.assertEqual(True, test_config())
-
