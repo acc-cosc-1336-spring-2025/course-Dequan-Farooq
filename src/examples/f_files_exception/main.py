@@ -2,11 +2,16 @@
 import files
 
 def main():
-    file_name = 'philosophers.txt'
+    #file_name = 'philosophers.txt'
 
     #files.write_to_file(file_name)
     #files.read_from_file(file_name)
    # files.read_from_file_one_line_at_a_time(file_name)
     #files.read_from_file_data_w_loop(file_name)
-    files.read_from_file_w_for_(file_name)
+    #files.read_from_file_w_for_(file_name)
+
+    file_name = 'employee.txt'
+
+    #files.write_employee_records(file_name)
+    files.read_employee_records(file_name)
 main()

@@ -47,3 +47,33 @@ def read_from_file_w_for_(file_name):
         print (line.rstrip('\n'))
 
     file.close()
+
+
+def write_employee_records(file_name):
+    file = open(file_name, 'w')
+
+    choice = "1"
+    while choice == '1':
+        id = input ('Enter ID:')
+        name = input ('Enter Name:')
+        dept = input ('Enter department:')
+
+        file.write(id+ '\t')
+        file.write(name+ '\t')
+        file.write(dept+ '\t')
+        
+        choice = input('Enter 1 to continue:')
+    file.close()
+
+def read_employee_records(file_name):
+    file = open(file_name, 'r')
+
+    for employee in file:
+        record = employee.split('\t') # creates a list
+
+
+        id= record[0]
+        name = record[1]
+        dept = record [2].rstrip('\n')
+        
+        print(id, record, dept)
