@@ -1,29 +1,23 @@
-def get_p_distance(list1, list2):
-    
-    if len(list1) != len(list2):
-        raise ValueError("Both lists must be of the same length")
-    
-   
-    differences = sum(1 for a, b in zip(list1, list2) if a != b)
-    
-    
-    p_distance = differences / len(list1)
-    
-    return p_distance
 
-def get_p_distance_matrix(list_of_lists):
-    
-    n = len(list_of_lists)
-    
-    
-    p_distance_matrix = [[0] * n for _ in range(n)]
-    
-    
-    for i in range(n):
-        for j in range(i, n):  
-            p_dist = get_p_distance(list_of_lists[i], list_of_lists[j])
-            p_distance_matrix[i][j] = p_dist
-            p_distance_matrix[j][i] = p_dist  
-    
-    return p_distance_matrix
+def add_inventory(inventory, item, quantity):
+    if item in inventory:
+        inventory[item] += quantity
+    else:
+        inventory[item] = quantity
+def remove_inventory_widget(inventory, widget_name, quantity=None):
+ 
+    if widget_name not in inventory:
+        return "Item not found"
+
+    if quantity is None:
+        del inventory[widget_name]
+        return "Record deleted"
+
+    if inventory[widget_name] < quantity:
+        return f"Error: Not enough {widget_name} to remove."
+
+    inventory[widget_name] -= quantity
+    return inventory[widget_name]
+
+
 

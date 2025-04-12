@@ -1,54 +1,46 @@
-from dictionary import get_p_distance_matrix
+from dictionary import add_inventory
 
-def display_matrix(matrix):
-    """Display the matrix in a readable format with two decimal places."""
-    for row in matrix:
-        print(' '.join(f'{value:.2f}' for value in row))
+def delete_item(inventory, item):
+    if item in inventory:
+        del inventory[item]
+        print(f"'{item}' has been deleted from the inventory.")
+    else:
+        print(f"'{item}' not found in the inventory.")
+
+def display_menu():
+    print("\nInventory Menu")
+    print("1 - Add or Update Item")
+    print("2 - Delete Item")
+    print("3 - Exit")
 
 def main():
+    inventory = {}
+
     while True:
-       
-        print("\nMenu:")
-        print("1 - Get p distance matrix")
-        print("2 - Exit")
+        display_menu()
+        choice = input("Enter your choice (1-3): ")
 
-        
-        choice = input("Enter your choice (1/2): ")
-
-        if choice == "1":
-           
-            list_of_lists = []
-            print("Enter lists (one list at a time, separated by spaces). Type 'done' when finished:")
-            while True:
-                user_input = input("Enter list: ")
-                if user_input.lower() == 'done':
-                    break
-                try:
-                    
-                    list_of_lists.append(user_input.strip().split())
-                except Exception as e:
-                    print(f"Error parsing input: {e}")
-                    continue
-
-           
+        if choice == '1':
+            item = input("Enter item name: ").strip()
             try:
-                p_distance_matrix = get_p_distance_matrix(list_of_lists)
-                print("P-distance matrix:")
-                display_matrix(p_distance_matrix)
-            except ValueError as e:
-                print(f"Error: {e}")
-            except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+                quantity = int(input(f"Enter quantity for '{item}': "))
+                add_inventory(inventory, item, quantity)
+                print(f"Inventory updated: {item} now has quantity {inventory[item]}")
+            except ValueError:
+                print("Invalid quantity. Please enter an integer.")
 
-        elif choice == "2":
-            print("Exiting the program.")
+        elif choice == '2':
+            item = input("Enter item name to delete: ").strip()
+            delete_item(inventory, item)
+
+        elif choice == '3':
+            print("Exiting program.")
             break
 
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid option. Please select 1, 2, or 3.")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
-
 
 
