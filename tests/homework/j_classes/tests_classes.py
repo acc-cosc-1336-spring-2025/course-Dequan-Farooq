@@ -1,4 +1,6 @@
 import unittest
+import os 
+import sys 
 from src.homework.j_classes.class_a import die
 
 class TestDie(unittest.TestCase):
